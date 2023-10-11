@@ -55,25 +55,25 @@ def tipomizWMA (string):
 
 
 # Linhas para armazenar os dados
-gradations = []
-performances = []
-temperatures = []
+gradations = ['Graduação']
+performances = ['P.G']
+temperatures = ['Temperaturas']
 
 ## Agregado e tipos:
-aggregate_portland = []
-aggregate_lime = []
-aggregate_crusher = []
+aggregate_portland = ['Cimento Portland']
+aggregate_lime = ['Lime']
+aggregate_crusher = ['Crusher']
 
-rap = []
-binder = []
+rap = ['RAP']
+binder = ['Binder']
 binderadditive = []
 mixadditive = []
 
 #GWP_100
-co2material = []
-co2transport = []
-co2production = []
-co2total = []
+co2material = ['CO2 - Material']
+co2transport = ['CO2 - Transport']
+co2production = ['CO2 - Production']
+co2total = ['CO2 - Total']
 
 ENRfuel_mat = []
 ENRfuel_tra = []
