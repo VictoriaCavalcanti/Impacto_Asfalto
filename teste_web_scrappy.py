@@ -251,3 +251,5 @@ def main():
 # Salvar em um arquivo Excel
 #df.to_excel('noticias.xlsx', index=False)
 main()
+
+#Mudei algo
