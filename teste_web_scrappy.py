@@ -403,8 +403,6 @@ def main():
 
     if (write_result == 's'):
         escreve_dados()
-# Criar um DataFrame com os títulos
-#df = pd.DataFrame({'P.': pages_brute})
 
 # Salvar em um arquivo Excel
 #df.to_excel('noticias.xlsx', index=False)
