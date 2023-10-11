@@ -11,7 +11,8 @@ from bs4 import BeautifulSoup
 
 # Lista de URLs de exemplo
 urls_estado = [
-    'https://asphaltepd.org/published/CA/',
+    # 'https://asphaltepd.org/published/CA/',
+    'https://asphaltepd.org/published/CO/',
 ]
 #exemplo: Arizona (AZ) 
 
@@ -53,33 +54,75 @@ def tipomizWMA (string):
     return string [65:69]
 
 
-# Lista para armazenar os dados
+# Linhas para armazenar os dados
 gradations = []
 performances = []
 temperatures = []
-teste = []
-aggregate = [] #somente cimento portland 
-materialfiller=[]
+
+## Agregado e tipos:
+aggregate_portland = []
+aggregate_lime = []
+aggregate_crusher = []
+
 rap = []
 binder = []
-binderadditive =[]
-mixadditive =[]
-co2material
-co2transport =[]
-co2production =[]
-co2total= []
-ENRfuel_mat=[]
-ENRfuel_tra =[]
-ENRfuel_pro=[]
-ENRfuel_total=[]
-ENRmat_mat=[]
-ENRmat_tra=[]
-ENRmat_pro=[]
-ENRmat_total=[]
-SM_mat=[]
-SM_tra=[]
-SM_pro=[]
-SM_total=[] 
+binderadditive = []
+mixadditive = []
+
+#GWP_100
+co2material = []
+co2transport = []
+co2production = []
+co2total = []
+
+ENRfuel_mat = []
+ENRfuel_tra = []
+ENRfuel_pro = []
+ENRfuel_total = []
+ENRmat_mat = []
+ENRmat_tra = []
+ENRmat_pro = []
+ENRmat_total = []
+SM_mat = []
+SM_tra = []
+SM_pro = []
+SM_total = []
+
+# Data set
+data_set = [
+    gradations,
+    performances,
+    temperatures,
+
+    ## Agregado e tipos:
+    aggregate_portland,
+    aggregate_lime,
+    # aggregate_crusher,
+
+    rap,
+    binder,
+    # binderadditive,
+    # mixadditive,
+
+    #GWP_100
+    co2material,
+    co2transport,
+    co2production,
+    co2total,
+
+    # ENRfuel_mat,
+    # ENRfuel_tra,
+    # ENRfuel_pro,
+    # ENRfuel_total,
+    # ENRmat_mat,
+    # ENRmat_tra,
+    # ENRmat_pro,
+    # ENRmat_total,
+    # SM_mat,
+    # SM_tra,
+    # SM_pro,
+    # SM_total,
+]
 
 # Loop pelas URLs
 
@@ -121,22 +164,41 @@ def procura_pagina_1(pagina):
         if (element.has_attr('id') and  element['id'] == 'tm_1'): 
             temperatures.append(temperatures_filter(element.text))
         
-        if (element.has_attr('id') and  element['id'] == 'ti_1'): 
-            teste.append(element.text)
 
 def procura_pagina_2(pagina):
     text = pagina.find('div', id='p2-text')
-    tabela = text.find('table')
+    div_table = text.find('div', id='ingredient-table')
+    tabela = div_table.find('table')
     linhas = tabela.find_all('tr')
     achou_binder = False
     achou_rap = False
-    achou_agregate = False
+    achou_aggregate = False
+    achou_lime = False
+    achou_portland = False
+    achou_crusher = False
 
     for linha in linhas:
         colunas = linha.find_all('td')
         if (colunas[1].text.count('Mineral fillers')):
-            achou_agregate = True
-            aggregate.append(colunas[2].text)
+            achou_aggregate = True
+            indice = colunas[1].text.index('-')
+            tamanho = len(colunas[1].text)
+            tipo = colunas[1].text[indice + 2: tamanho]
+            valor = colunas[2].text
+            
+            if (tipo == 'Lime'):
+                aggregate_lime.append(valor)
+                achou_lime = True
+
+            if (tipo == 'Crusher fines'):
+                aggregate_crusher.append(valor)
+                achou_crusher = True
+
+            if (tipo == 'Portland cement'):
+                aggregate_portland.append(valor)
+                achou_portland = True
+         
+            
         elif (colunas[0].text == 'RAP'):
             achou_rap = True
             rap.append(colunas[2].text)
@@ -146,14 +208,48 @@ def procura_pagina_2(pagina):
     
     if (not achou_binder):
         binder.append('-')
+
     if (not achou_rap):
         rap.append('-')
-    if (not achou_agregate):
-        aggregate.append('-')
+
+    if (not achou_aggregate):
+        aggregate_lime.append('-')
+        aggregate_crusher.append('-')
+        aggregate_portland.append('-')
+    else:
+        if (not achou_lime):
+            aggregate_lime.append('-')
+
+        if (not achou_crusher):
+            aggregate_crusher.append('-')
+
+        if (not achou_portland):
+            aggregate_portland.append('-')
 
 def procura_pagina_5(pagina):
-    text = pagina.find ( 
+    text = pagina.find('div', id='p5-text')
+    description = text.find_all('span')
+
+    for element in description:
+        if (element.has_attr('id') and element['id'] == 'p5_to_1'):
+            valor = element.text[7:12]
+            valor = valor.replace('.', ',')
+            co2material.append(valor)
+
+        if (element.has_attr('id') and  element['id'] == 'p5_tp_1'): 
+            valor = element.text[7:12]
+            valor = valor.replace('.', ',')
+            co2transport.append(valor)
+
+        if (element.has_attr('id') and  element['id'] == 'p5_tq_1'):
+            valor = element.text[7:12]
+            valor = valor.replace('.', ',')
+            co2production.append(valor)
         
+        if (element.has_attr('id') and  element['id'] == 'p5_tr_1'):
+            valor = element.text[7:12]
+            valor = valor.replace('.', ',')
+            co2total.append(valor)
 
 def run_scrappy(links):
     acertos = 0
@@ -168,6 +264,8 @@ def run_scrappy(links):
                     procura_pagina_1(pagina)
                 if (pagina['id'] == 'p2'):
                     procura_pagina_2(pagina)
+                if (pagina['id'] == 'p5'):
+                    procura_pagina_5(pagina)
             acertos += 1
         else:
             print(f'Falha na solicitação HTTP para {url}')
@@ -211,9 +309,19 @@ def imprime_listas(num):
     print(temperatures)
     print()
 
-    print(f'=========================================== Cimento Portland (Weight %) - {len(aggregate)} itens =============================================')
+    print(f'=========================================== Cimento Portland (Weight %) - {len(aggregate_portland)} itens =============================================')
     print()
-    print(aggregate)
+    print(aggregate_portland)
+    print()
+
+    print(f'=========================================== Lime (Weight %) - {len(aggregate_lime)} itens =============================================')
+    print()
+    print(aggregate_lime)
+    print()
+
+    print(f'=========================================== Crusher (Weight %) - {len(aggregate_crusher)} itens =============================================')
+    print()
+    print(aggregate_crusher)
     print()
 
     print(f'=========================================== RAP (Weight %) - {len(rap)} itens ==================================================')
@@ -226,6 +334,26 @@ def imprime_listas(num):
     print(binder)
     print()
 
+    print(f'=========================================== CO2 - Material - {len(co2material)} itens ===============================================')
+    print()
+    print(co2material)
+    print()
+
+    print(f'=========================================== CO2 - Transport - {len(co2transport)} itens ===============================================')
+    print()
+    print(co2transport)
+    print()
+
+    print(f'=========================================== CO2 - Production - {len(co2production)} itens ===============================================')
+    print()
+    print(co2production)
+    print()
+
+    print(f'=========================================== CO2 - Total - {len(co2total)} itens ===============================================')
+    print()
+    print(co2total)
+    print()
+
 
 def menu_escolha():
     print('Scrappy - Páginas EDP')
@@ -236,21 +364,48 @@ def menu_escolha():
     escolha = input()
     return escolha
 
+def menu_escrita():
+    print()
+    print('Deseja escrever os dados?')
+    print('Digite "S" ou "N"')
+    print('Sua escolha: ', end='')
+    escolha = input()
+    return escolha
+
+def escreve_dados():
+    import csv
+    # Calcula a transposta da matriz
+    dados_transpostos = list(map(list, zip(*data_set)))
+
+    # Nome do arquivo CSV de saída
+    nome_arquivo = 'dados_transpostos.csv'
+
+    # Escrever os dados transpostos no arquivo CSV
+    with open(nome_arquivo, 'w', newline='') as arquivo_csv:
+        escritor = csv.writer(arquivo_csv)
+        escritor.writerows(dados_transpostos)
+
+    print(f'Dados transpostos foram escritos no arquivo {nome_arquivo}')
+
 def main():
     result = menu_escolha()
     while (result != '1' and result != '2'):
         result = menu_escolha()
 
+    write_result = menu_escrita().lower()
+    while (write_result != 's' and write_result != 'n'):
+        write_result = menu_escrita().lower()
+
     if (result == '1'):
         run(True)
     else:
         run()
+
+    if (write_result == 's'):
+        escreve_dados()
 # Criar um DataFrame com os títulos
 #df = pd.DataFrame({'P.': pages_brute})
 
 # Salvar em um arquivo Excel
 #df.to_excel('noticias.xlsx', index=False)
 main()
-
-#Mudei algo
-#Mudei pela internet
