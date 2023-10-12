@@ -12,8 +12,8 @@ from bs4 import BeautifulSoup
 # Lista de URLs de exemplo
 urls_estado = [
     # 'https://asphaltepd.org/published/CA/',
-    'https://asphaltepd.org/published/CO/',
-    #'https://asphaltepd.org/published/AL/',
+    #'https://asphaltepd.org/published/CO/',
+    'https://asphaltepd.org/published/AL/',
 
 
 ]
@@ -71,7 +71,7 @@ def funçãoNA (string):
     print ("N/A")
 
 
-links_a = ['Links']
+urls = ['URLS']
 
 # Linhas para armazenar os dados pag 1 
 gradations = ['Graduação']
@@ -114,6 +114,7 @@ SM_total = ['SM - Total']
 
 # Data set
 data_set = [
+    urls,
     binder,#teor 
     performances,
     rap,
@@ -191,7 +192,7 @@ def procura_pagina_1(pagina):
             temperatures.append(temperatures_filter(element.text))
             
         if (element.has_attr('id') and  element['id'] == 'tm_1'):
-            tipoMIX.append(tipoMIX_filter(element.text))
+            tipoMIX.append(parentheses_filter(element.text))
             
         
 
@@ -357,6 +358,7 @@ def run_scrappy(links):
                 if (pagina['id'] == 'p6'):
                     procura_pagina_6(pagina)
             acertos += 1
+            urls.append(url)
         else:
             print(f'Falha na solicitação HTTP para {url}')
 
