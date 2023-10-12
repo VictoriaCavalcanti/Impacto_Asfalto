@@ -61,6 +61,10 @@ def parentheses_filter(text):
 def tipoMIX_filter (string):
     return string [65:68]
 
+def funçãoNA (string):
+    print ("N/A")
+
+
 # Linhas para armazenar os dados pag 1 
 gradations = ['Graduação']
 performances = ['P.G']
@@ -123,15 +127,14 @@ data_set = [
     NRPRfuel_tra,
     NRPRfuel_pro,
     NRPRfuel_total,
-    
-    # ENRmat_mat,
-    # ENRmat_tra,
-    # ENRmat_pro,
-    # ENRmat_total,
-    # SM_mat,
-    # SM_tra,
-    # SM_pro,
-    # SM_total,
+    NRPRmat_mat,
+    NRPRmat_tra,
+    NRPRmat_pro,
+    NRPRmat_total,
+    SM_mat,
+    SM_tra,
+    SM_pro,
+    SM_total,
 ]
 
 # Loop pelas URLs
@@ -270,9 +273,9 @@ def procura_pagina_6(pagina):
     text = pagina.find('div', id='p6-text')
     description = text.find_all('span')
 
+#NRPRfuel 
     for element in description:
         if (element.has_attr('id') and element['id'] == 'p6_t1f_1'):
-            #dar um jeito de pegar somente o que está dentro do parenteses
             valor = parentheses_filter(element.text)
             NRPRfuel_mat.append(valor)
 
@@ -288,6 +291,40 @@ def procura_pagina_6(pagina):
             valor = parentheses_filter(element.text)
             NRPRfuel_total.append(valor)
 
+#NRPRmaterial 
+        if (element.has_attr('id') and element['id'] == 'p6_t1s_1'):
+            valor = parentheses_filter(element.text)
+            NRPRmat_mat.append(valor)
+
+        if (element.has_attr('id') and  element['id'] == 'p6_t1t_1'):#printar N/A em todas as colunas
+            valor = element.text [0,3]
+            NRPRmat_tra.append(valor)
+
+        if (element.has_attr('id') and  element['id'] == 'p6_t1v_1'): #printar N/A em todas as colunas
+            valor = element.text [0,2]
+            NRPRmat_pro.append(valor)
+        
+        if (element.has_attr('id') and  element['id'] == 'p6_t1y_1'):
+            valor = parentheses_filter(element.text)
+            NRPRmat_total.append(valor)
+
+#SM
+        if (element.has_attr('id') and element['id'] == 'p6_t23_1'):
+            valor = parentheses_filter(element.text)
+            SM_mat.append(valor)
+
+
+        if (element.has_attr('id') and  element['id'] == 'p6_t24_1'): 
+            valor = element.text [0,3]  #printar N/A em todas as colunas 
+            SM_tra.append(valor)
+
+        if (element.has_attr('id') and  element['id'] == 'p6_25_1'):
+            valor = element.text [0,2]  #printar 0 em todas as colunas
+            SM_pro.append(valor)
+        
+        if (element.has_attr('id') and  element['id'] == 'p6_t29_1'):
+            valor = parentheses_filter(element.text)
+            SM_total.append(valor)
             
 def run_scrappy(links):
     acertos = 0
@@ -419,6 +456,42 @@ def imprime_listas(num):
     print(NRPRfuel_total)
     print()
 
+    print(f'===========================================NRPR material - Material - {len(NRPRmat_mat) - 1} itens ===============================================')
+    print()
+    print(NRPRmat_mat)
+    print()
+
+    print(f'=========================================== NRPR material - Transport - {len(NRPRmat_tra) - 1} itens ===============================================')
+    print()
+    print(NRPRmat_tra)
+    print()
+
+    print(f'=========================================== NRPR material - Production - {len(NRPRmat_pro) - 1} itens ===============================================')
+    print()
+    print(NRPRmat_pro)
+    print()
+
+    print(f'=========================================== NRPR material - Total - {len(NRPRmat_total) - 1} itens ===============================================')
+    print()
+    print(NRPRmat_total)
+    print()
+
+    print(f'=========================================== SM - Material - Total - {len(SM_mat) - 1} itens ===============================================')
+    print()
+    print(SM_mat)
+    print()
+    
+    print(f'=========================================== SM -Transport - Total - {len(SM_mat) - 1} itens ===============================================')
+    print()
+    print(SM_tra)
+    print()
+
+    print(f'=========================================== SM- Producion - Total - {len(SM_mat) - 1} itens ===============================================')
+    print()
+    print(SM_total)
+    print()
+
+
     
 def menu_escolha():
     print('Scrappy - Páginas EDP')
@@ -472,3 +545,9 @@ def main():
 # Salvar em um arquivo Excel
 #df.to_excel('noticias.xlsx', index=False)
 main()
+
+
+
+#fazer uma lista anotando o nome do binder
+# nome e teor de binder additive e mix additive, caso encontrre
+#traduzir todos os "dense, open e not reported" para portugues 
