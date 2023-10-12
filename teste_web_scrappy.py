@@ -12,8 +12,8 @@ from bs4 import BeautifulSoup
 # Lista de URLs de exemplo
 urls_estado = [
     # 'https://asphaltepd.org/published/CA/',
-    #'https://asphaltepd.org/published/CO/',
-    'https://asphaltepd.org/published/AL/',
+    'https://asphaltepd.org/published/CO/',
+    #'https://asphaltepd.org/published/AL/',
 
 
 ]
@@ -39,6 +39,9 @@ numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 # Funções auxiliares:
 def gradations_filter(text):
+    return text[16 : len(text)]
+
+def performances_filter(text):
     result = ''
     try:
         size = len(text)
@@ -46,9 +49,6 @@ def gradations_filter(text):
         return text[start + 3 : size]
     except ValueError:
         return 'Not Reported'
-
-def performances_filter(string):
-    return string[-5 : len(string)]
 
 def temperatures_filter(string):
     min_range = string[151 : 154]
@@ -70,6 +70,8 @@ def tipoMIX_filter (string):
 def funçãoNA (string):
     print ("N/A")
 
+
+links_a = ['Links']
 
 # Linhas para armazenar os dados pag 1 
 gradations = ['Graduação']
@@ -95,18 +97,20 @@ co2transport = ['CO2 - Transport']
 co2production = ['CO2 - Production']
 co2total = ['CO2 - Total']
 
-NRPRfuel_mat = ['material']
-NRPRfuel_tra = ['transporte']
-NRPRfuel_pro = ['produção']
-NRPRfuel_total = ['total']
-NRPRmat_mat = ['material']
-NRPRmat_tra = ['transporte']
-NRPRmat_pro = ['produção']
-NRPRmat_total = ['total']
-SM_mat = []
-SM_tra = []
-SM_pro = []
-SM_total = []
+NRPRfuel_mat = ['NRPR Fuel - Material']
+NRPRfuel_tra = ['NRPR Fuel - Transport']
+NRPRfuel_pro = ['NRPR Fuel - Production']
+NRPRfuel_total = ['NRPR Fuel - Total']
+
+NRPRmat_mat = ['NRPR Mat - Material']
+NRPRmat_tra = ['NRPR Mat - Transport']
+NRPRmat_pro = ['NRPR Mat - Production']
+NRPRmat_total = ['NRPR Mat - Total']
+
+SM_mat = ['SM - Material']
+SM_tra = ['SM - Transport']
+SM_pro = ['SM - Production']
+SM_total = ['SM - Total']
 
 # Data set
 data_set = [
@@ -129,14 +133,17 @@ data_set = [
     co2transport,
     co2production,
     co2total,
+
     NRPRfuel_mat,
     NRPRfuel_tra,
     NRPRfuel_pro,
     NRPRfuel_total,
+
     NRPRmat_mat,
     NRPRmat_tra,
     NRPRmat_pro,
     NRPRmat_total,
+
     SM_mat,
     SM_tra,
     SM_pro,
@@ -279,7 +286,7 @@ def procura_pagina_6(pagina):
     text = pagina.find('div', id='p6-text')
     description = text.find_all('span')
 
-#NRPRfuel 
+    #NRPRfuel 
     for element in description:
         if (element.has_attr('id') and element['id'] == 'p6_t1f_1'):
             valor = parentheses_filter(element.text)
@@ -297,7 +304,7 @@ def procura_pagina_6(pagina):
             valor = parentheses_filter(element.text)
             NRPRfuel_total.append(valor)
 
-#NRPRmaterial 
+        #NRPRmaterial 
         if (element.has_attr('id') and element['id'] == 'p6_t1s_1'):
             valor = parentheses_filter(element.text)
             NRPRmat_mat.append(valor)
@@ -307,25 +314,25 @@ def procura_pagina_6(pagina):
             NRPRmat_tra.append(valor)
 
         if (element.has_attr('id') and  element['id'] == 'p6_t1v_1'): #printar N/A em todas as colunas
-            valor = element.text [0:2]
+            valor = element.text [0:3]
             NRPRmat_pro.append(valor)
         
         if (element.has_attr('id') and  element['id'] == 'p6_t1y_1'):
             valor = parentheses_filter(element.text)
             NRPRmat_total.append(valor)
 
-#SM
+        #SM
         if (element.has_attr('id') and element['id'] == 'p6_t23_1'):
             valor = parentheses_filter(element.text)
             SM_mat.append(valor)
 
 
         if (element.has_attr('id') and  element['id'] == 'p6_t24_1'): 
-            valor = element.text [0:3]  #printar N/A em todas as colunas 
+            valor = element.text  
             SM_tra.append(valor)
 
-        if (element.has_attr('id') and  element['id'] == 'p6_25_1'):
-            valor = element.text [0:2]  #printar 0 em todas as colunas
+        if (element.has_attr('id') and  element['id'] == 'p6_t26_1'):
+            valor = element.text
             SM_pro.append(valor)
         
         if (element.has_attr('id') and  element['id'] == 'p6_t29_1'):
@@ -487,12 +494,17 @@ def imprime_listas(num):
     print(SM_mat)
     print()
     
-    print(f'=========================================== SM -Transport - Total - {len(SM_mat) - 1} itens ===============================================')
+    print(f'=========================================== SM- Transport - Total - {len(SM_tra) - 1} itens ===============================================')
     print()
     print(SM_tra)
     print()
 
-    print(f'=========================================== SM- Producion - Total - {len(SM_mat) - 1} itens ===============================================')
+    print(f'=========================================== SM - Production - Total - {len(SM_pro) - 1} itens ===============================================')
+    print()
+    print(SM_pro)
+    print()
+
+    print(f'=========================================== SM - Total - Total - {len(SM_total) - 1} itens ===============================================')
     print()
     print(SM_total)
     print()
@@ -520,7 +532,6 @@ def escreve_dados():
     import csv
     # Calcula a transposta da matriz
     dados_transpostos = list(map(list, zip(*data_set)))
-
     # Nome do arquivo CSV de saída
     nome_arquivo = 'dados_transpostos.csv'
 
