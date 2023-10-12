@@ -38,8 +38,14 @@ urls_teste = [
 numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 # Funções auxiliares:
-def gradations_filter(string):
-    return string[16 : len(string)]
+def gradations_filter(text):
+    result = ''
+    try:
+        size = len(text)
+        start = text.index('PG')
+        return text[start + 3 : size]
+    except ValueError:
+        return 'Not Reported'
 
 def performances_filter(string):
     return string[-5 : len(string)]
