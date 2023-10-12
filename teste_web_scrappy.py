@@ -297,11 +297,11 @@ def procura_pagina_6(pagina):
             NRPRmat_mat.append(valor)
 
         if (element.has_attr('id') and  element['id'] == 'p6_t1t_1'):#printar N/A em todas as colunas
-            valor = element.text [0,3]
+            valor = element.text [0:3]
             NRPRmat_tra.append(valor)
 
         if (element.has_attr('id') and  element['id'] == 'p6_t1v_1'): #printar N/A em todas as colunas
-            valor = element.text [0,2]
+            valor = element.text [0:2]
             NRPRmat_pro.append(valor)
         
         if (element.has_attr('id') and  element['id'] == 'p6_t1y_1'):
@@ -315,11 +315,11 @@ def procura_pagina_6(pagina):
 
 
         if (element.has_attr('id') and  element['id'] == 'p6_t24_1'): 
-            valor = element.text [0,3]  #printar N/A em todas as colunas 
+            valor = element.text [0:3]  #printar N/A em todas as colunas 
             SM_tra.append(valor)
 
         if (element.has_attr('id') and  element['id'] == 'p6_25_1'):
-            valor = element.text [0,2]  #printar 0 em todas as colunas
+            valor = element.text [0:2]  #printar 0 em todas as colunas
             SM_pro.append(valor)
         
         if (element.has_attr('id') and  element['id'] == 'p6_t29_1'):
