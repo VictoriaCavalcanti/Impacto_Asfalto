@@ -50,6 +50,13 @@ def temperatures_filter(string):
     result = min_range + '-' + max_range
     return result
 
+# Filtro para pegar dados em parênteses
+def parentheses_filter(text):
+    left = text.index('(')
+    right = text.index(')')
+    return text[left + 1: right]
+
+
 #existem dois casos: HMA e WMA e não terão o mesmo intervalo de letras 
 def tipoMIX_filter (string):
     return string [65:68]
@@ -244,7 +251,7 @@ def procura_pagina_5(pagina):
             co2material.append(valor)
 
         if (element.has_attr('id') and  element['id'] == 'p5_tp_1'): 
-            valor = element.text[7:12]
+            valor = parentheses_filter(element.text)
             valor = valor.replace('.', ',')
             co2transport.append(valor)
 
@@ -259,25 +266,26 @@ def procura_pagina_5(pagina):
             co2total.append(valor)
 
 def procura_pagina_6(pagina):
+    acerto_parcial = 0
     text = pagina.find('div', id='p6-text')
     description = text.find_all('span')
 
     for element in description:
         if (element.has_attr('id') and element['id'] == 'p6_t1f_1'):
-            #dar um jeito de pegar somente o que está dentro do parenteses 
-            valor = element.text[0:4]
+            #dar um jeito de pegar somente o que está dentro do parenteses
+            valor = parentheses_filter(element.text)
             NRPRfuel_mat.append(valor)
 
         if (element.has_attr('id') and  element['id'] == 'p6_t1h_1'): 
-            valor = element.text[0:4]
+            valor = parentheses_filter(element.text)
             NRPRfuel_tra.append(valor)
 
         if (element.has_attr('id') and  element['id'] == 'p6_t1j_1'):
-            valor = element.text[0:4]
+            valor = parentheses_filter(element.text)
             NRPRfuel_pro.append(valor)
         
         if (element.has_attr('id') and  element['id'] == 'p6_t1l_1'):
-            valor = element.text[0:5]
+            valor = parentheses_filter(element.text)
             NRPRfuel_total.append(valor)
 
             
@@ -296,6 +304,8 @@ def run_scrappy(links):
                     procura_pagina_2(pagina)
                 if (pagina['id'] == 'p5'):
                     procura_pagina_5(pagina)
+                if (pagina['id'] == 'p6'):
+                    procura_pagina_6(pagina)
             acertos += 1
         else:
             print(f'Falha na solicitação HTTP para {url}')
@@ -324,87 +334,87 @@ def imprime_listas(num):
     print(f'Ao todo usou-se {num} links:')
     print()
 
-    print(f'=========================================== Gradação - {len(gradations)} itens =======================================================')
+    print(f'=========================================== Gradação - {len(gradations) - 1} itens =======================================================')
     print()
     print(gradations)
     print()
 
-    print(f'=========================================== Performace (P.G) - {len(performances)} itens ================================================')
+    print(f'=========================================== Performace (P.G) - {len(performances) - 1} itens ================================================')
     print()
     print(performances)
     print()
     
-    print(f'=========================================== Range de Temperatura - {len(temperatures)} itens ============================================')
+    print(f'=========================================== Range de Temperatura - {len(temperatures) - 1} itens ============================================')
     print()
     print(temperatures)
     print()
 
-    print(f'=========================================== Tipo de Mistura - {len(tipoMIX)} itens =======================================================')
+    print(f'=========================================== Tipo de Mistura - {len(tipoMIX) - 1} itens =======================================================')
     print()
     print(tipoMIX)
     print()
 
-    print(f'=========================================== Cimento Portland (Weight %) - {len(aggregate_portland)} itens =============================================')
+    print(f'=========================================== Cimento Portland (Weight %) - {len(aggregate_portland) - 1} itens =============================================')
     print()
     print(aggregate_portland)
     print()
 
-    print(f'=========================================== Lime (Weight %) - {len(aggregate_lime)} itens =============================================')
+    print(f'=========================================== Lime (Weight %) - {len(aggregate_lime) - 1} itens =============================================')
     print()
     print(aggregate_lime)
     print()
 
-    print(f'=========================================== Crusher (Weight %) - {len(aggregate_crusher)} itens =============================================')
+    print(f'=========================================== Crusher (Weight %) - {len(aggregate_crusher) - 1} itens =============================================')
     print()
     print(aggregate_crusher)
     print()
 
-    print(f'=========================================== RAP (Weight %) - {len(rap)} itens ==================================================')
+    print(f'=========================================== RAP (Weight %) - {len(rap) - 1} itens ==================================================')
     print()
     print(rap)
     print()
 
-    print(f'=========================================== BINDER (Weight %) - {len(binder)} itens ===============================================')
+    print(f'=========================================== BINDER (Weight %) - {len(binder) - 1} itens ===============================================')
     print()
     print(binder)
     print()
 
-    print(f'=========================================== CO2 - Material - {len(co2material)} itens ===============================================')
+    print(f'=========================================== CO2 - Material - {len(co2material) - 1} itens ===============================================')
     print()
     print(co2material)
     print()
 
-    print(f'=========================================== CO2 - Transport - {len(co2transport)} itens ===============================================')
+    print(f'=========================================== CO2 - Transport - {len(co2transport) - 1} itens ===============================================')
     print()
     print(co2transport)
     print()
 
-    print(f'=========================================== CO2 - Production - {len(co2production)} itens ===============================================')
+    print(f'=========================================== CO2 - Production - {len(co2production) - 1} itens ===============================================')
     print()
     print(co2production)
     print()
 
-    print(f'=========================================== CO2 - Total - {len(co2total)} itens ===============================================')
+    print(f'=========================================== CO2 - Total - {len(co2total) - 1} itens ===============================================')
     print()
     print(co2total)
     print()
 
-    print(f'===========================================NRPR fuel - Material - {len(NRPRfuel_mat)} itens ===============================================')
+    print(f'===========================================NRPR fuel - Material - {len(NRPRfuel_mat) - 1} itens ===============================================')
     print()
     print(NRPRfuel_mat)
     print()
 
-    print(f'=========================================== NRPR fuel - Transport - {len(NRPRfuel_tra)} itens ===============================================')
+    print(f'=========================================== NRPR fuel - Transport - {len(NRPRfuel_tra) - 1} itens ===============================================')
     print()
     print(NRPRfuel_tra)
     print()
 
-    print(f'=========================================== NRPR fuel - Production - {len(NRPRfuel_pro)} itens ===============================================')
+    print(f'=========================================== NRPR fuel - Production - {len(NRPRfuel_pro) - 1} itens ===============================================')
     print()
     print(NRPRfuel_pro)
     print()
 
-    print(f'=========================================== NRPR fuel - Total - {len(NRPRfuel_total)} itens ===============================================')
+    print(f'=========================================== NRPR fuel - Total - {len(NRPRfuel_total) - 1} itens ===============================================')
     print()
     print(NRPRfuel_total)
     print()
