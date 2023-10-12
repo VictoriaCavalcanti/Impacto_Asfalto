@@ -12,7 +12,10 @@ from bs4 import BeautifulSoup
 # Lista de URLs de exemplo
 urls_estado = [
     # 'https://asphaltepd.org/published/CA/',
-    'https://asphaltepd.org/published/CO/',
+    #'https://asphaltepd.org/published/CO/',
+    'https://asphaltepd.org/published/AL/',
+
+
 ]
 #exemplo: Arizona (AZ) 
 
@@ -48,16 +51,15 @@ def temperatures_filter(string):
     return result
 
 #existem dois casos: HMA e WMA e não terão o mesmo intervalo de letras 
-def tipomixHMA (string):
-    return string [64:68]
-def tipomizWMA (string):
-    return string [65:69]
+def tipoMIX_filter (string):
+    return string [65:68]
 
-
-# Linhas para armazenar os dados
+# Linhas para armazenar os dados pag 1 
 gradations = ['Graduação']
 performances = ['P.G']
 temperatures = ['Temperaturas']
+tipoMIX = ['Tipo de Mistura'] 
+       #tipobinder = ['Tipo de Binder']
 
 ## Agregado e tipos:
 aggregate_portland = ['Cimento Portland']
@@ -65,6 +67,7 @@ aggregate_lime = ['Lime']
 aggregate_crusher = ['Crusher']
 
 rap = ['RAP']
+tipobinder =[]
 binder = ['Binder']
 binderadditive = []
 mixadditive = []
@@ -75,14 +78,14 @@ co2transport = ['CO2 - Transport']
 co2production = ['CO2 - Production']
 co2total = ['CO2 - Total']
 
-ENRfuel_mat = []
-ENRfuel_tra = []
-ENRfuel_pro = []
-ENRfuel_total = []
-ENRmat_mat = []
-ENRmat_tra = []
-ENRmat_pro = []
-ENRmat_total = []
+NRPRfuel_mat = ['material']
+NRPRfuel_tra = ['transporte']
+NRPRfuel_pro = ['produção']
+NRPRfuel_total = ['total']
+NRPRmat_mat = ['material']
+NRPRmat_tra = ['transporte']
+NRPRmat_pro = ['produção']
+NRPRmat_total = ['total']
 SM_mat = []
 SM_tra = []
 SM_pro = []
@@ -90,30 +93,30 @@ SM_total = []
 
 # Data set
 data_set = [
-    gradations,
+    binder,#teor 
     performances,
-    temperatures,
-
-    ## Agregado e tipos:
-    aggregate_portland,
-    aggregate_lime,
-    # aggregate_crusher,
-
     rap,
-    binder,
     # binderadditive,
     # mixadditive,
+
+    gradations,
+    tipoMIX, 
+    #Tipo MIX
+    temperatures,
+    aggregate_lime,
+    aggregate_portland,
+    # aggregate_crusher,porque foi excluido?
 
     #GWP_100
     co2material,
     co2transport,
     co2production,
     co2total,
-
-    # ENRfuel_mat,
-    # ENRfuel_tra,
-    # ENRfuel_pro,
-    # ENRfuel_total,
+    NRPRfuel_mat,
+    NRPRfuel_tra,
+    NRPRfuel_pro,
+    NRPRfuel_total,
+    
     # ENRmat_mat,
     # ENRmat_tra,
     # ENRmat_pro,
@@ -163,6 +166,10 @@ def procura_pagina_1(pagina):
 
         if (element.has_attr('id') and  element['id'] == 'tm_1'): 
             temperatures.append(temperatures_filter(element.text))
+            
+        if (element.has_attr('id') and  element['id'] == 'tm_1'):
+            tipoMIX.append(tipoMIX_filter(element.text))
+            
         
 
 def procura_pagina_2(pagina):
@@ -251,6 +258,29 @@ def procura_pagina_5(pagina):
             valor = valor.replace('.', ',')
             co2total.append(valor)
 
+def procura_pagina_6(pagina):
+    text = pagina.find('div', id='p6-text')
+    description = text.find_all('span')
+
+    for element in description:
+        if (element.has_attr('id') and element['id'] == 'p6_t1f_1'):
+            #dar um jeito de pegar somente o que está dentro do parenteses 
+            valor = element.text[0:4]
+            NRPRfuel_mat.append(valor)
+
+        if (element.has_attr('id') and  element['id'] == 'p6_t1h_1'): 
+            valor = element.text[0:4]
+            NRPRfuel_tra.append(valor)
+
+        if (element.has_attr('id') and  element['id'] == 'p6_t1j_1'):
+            valor = element.text[0:4]
+            NRPRfuel_pro.append(valor)
+        
+        if (element.has_attr('id') and  element['id'] == 'p6_t1l_1'):
+            valor = element.text[0:5]
+            NRPRfuel_total.append(valor)
+
+            
 def run_scrappy(links):
     acertos = 0
     for url in links:
@@ -309,6 +339,11 @@ def imprime_listas(num):
     print(temperatures)
     print()
 
+    print(f'=========================================== Tipo de Mistura - {len(tipoMIX)} itens =======================================================')
+    print()
+    print(tipoMIX)
+    print()
+
     print(f'=========================================== Cimento Portland (Weight %) - {len(aggregate_portland)} itens =============================================')
     print()
     print(aggregate_portland)
@@ -354,7 +389,27 @@ def imprime_listas(num):
     print(co2total)
     print()
 
+    print(f'===========================================NRPR fuel - Material - {len(NRPRfuel_mat)} itens ===============================================')
+    print()
+    print(NRPRfuel_mat)
+    print()
 
+    print(f'=========================================== NRPR fuel - Transport - {len(NRPRfuel_tra)} itens ===============================================')
+    print()
+    print(NRPRfuel_tra)
+    print()
+
+    print(f'=========================================== NRPR fuel - Production - {len(NRPRfuel_pro)} itens ===============================================')
+    print()
+    print(NRPRfuel_pro)
+    print()
+
+    print(f'=========================================== NRPR fuel - Total - {len(NRPRfuel_total)} itens ===============================================')
+    print()
+    print(NRPRfuel_total)
+    print()
+
+    
 def menu_escolha():
     print('Scrappy - Páginas EDP')
     print('Escolha uma opção a seguir: ')
