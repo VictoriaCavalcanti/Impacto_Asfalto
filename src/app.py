@@ -1,3 +1,6 @@
+from time import time
+from datetime import datetime
+
 from links.test_urls import test_urls
 from dataset.data import create_data_set
 from utils.filters import state_abbreviation_filter
@@ -18,6 +21,8 @@ from pages.all_pages import serch_all_pages
 class Scrappy:
   test = False
   force_write_sheets = False
+  start_time = time()
+  end_time = 0
 
   sheets_sizes = []
   urls = []
@@ -97,12 +102,15 @@ class Scrappy:
       pass
     else:
       self.run_all_links()
-
+    self.end_time = time()
     self.summary()
     print('Fim do programa')
 
   def summary(self):
     print('\n========================== Resumo do Programa =============================\n')
+    print(f'Data de execução: {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    print(f'Tempo de execução do programa: {self.end_time - self.start_time}\n')
+
     print(f'Quantidade total de tentativas: {self.run_times}')
     print(f'Tentativas sucedidas: {self.successes}')
     print(f'Tentativas com erro: {self.errors}')
@@ -124,7 +132,7 @@ class Scrappy:
     # print(f'Tamanho das planilhas: ')
     # for i in range(len(self.sheets_sizes)):
     #   print(f'Planilha de {self.valid_urls[i]} - Tamanho {self.sheets_sizes[i]}')
-    # print()
+    print()
 
     total_data_amount = self.total_links * len(dataset_map) * len(self.run_times)
     total_success_data_amount = self.total_links * len(dataset_map) * len(self.successes)
