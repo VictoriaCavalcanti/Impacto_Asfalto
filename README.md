@@ -6,7 +6,7 @@ To help a Scientific Iniciation in Asphalt Impact, we development a Web Scrappy 
 > Last Update 13/10/2023
 
 ## Summary
-- [How to use the apllication]
-- [Application architecture]
-- [How to adapt the apllication] 
+- [How to use the apllication]()
+- [Application architecture]()
+- [How to adapt the apllication]() 
 
