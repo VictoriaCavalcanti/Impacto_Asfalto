@@ -42,7 +42,7 @@ def load_sheets_map():
         return sheets_map
   except FileNotFoundError:
      print('Não há dicionário salvo')
-     write_sheets_map()
+     write_sheets_map({})
      return {}
 
 def sheets_exists(sheets_filename):
