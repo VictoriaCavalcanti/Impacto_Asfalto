@@ -45,11 +45,11 @@ def search_page_six(page, dataset):
             NRPRmat_mat.append(value)
 
         if (element.has_attr('id') and  element['id'] == 'p6_t1t_1'):
-            value = element.text[0:3]
+            value = element.text
             NRPRmat_tra.append(value)
 
         if (element.has_attr('id') and  element['id'] == 'p6_t1v_1'):
-            value = element.text[0:2]
+            value = element.text
             NRPRmat_pro.append(value)
         
         if (element.has_attr('id') and  element['id'] == 'p6_t1y_1'):
