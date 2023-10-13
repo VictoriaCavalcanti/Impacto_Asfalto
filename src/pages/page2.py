@@ -54,7 +54,7 @@ def search_page_two(page, dataset):
                 if (crusher_count == 1):
                     crusher_value += value
                 else:
-                    crusher_value += ' ' + value
+                    crusher_value += ', ' + value
                 find_crusher = True
 
             elif (type == 'Portland cement'):
