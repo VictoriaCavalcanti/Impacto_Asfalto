@@ -114,7 +114,7 @@ def search_page_two(page, dataset):
         aggregate_lime.append('-')
         aggregate_portland.append('-')
         aggregate_crusher.append('-')
-        aggregate_ras.append('-')
+        ras.append('-')
     else:
         if (not find_lime):
             aggregate_lime.append('-')
