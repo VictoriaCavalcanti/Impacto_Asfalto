@@ -47,7 +47,7 @@ def load_sheets_map():
 
 def sheets_exists(sheets_filename):
    current_path = os.path.abspath(os.path.dirname(__file__))
-   sheets_path = os.path.abspath(os.path.join(current_path, '../../saves', sheets_filename))
+   sheets_path = os.path.abspath(os.path.join(current_path, '../../sheets', sheets_filename))
    return os.path.exists(sheets_path)
 
 def get_sheets_file_name(state_url):
