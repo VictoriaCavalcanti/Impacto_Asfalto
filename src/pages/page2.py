@@ -3,12 +3,12 @@ from utils.maps import dataset_map
 def search_page_two(page, dataset):
     aggregate_lime = dataset[dataset_map['aggregate_lime']]
     aggregate_portland = dataset[dataset_map['aggregate_portland']]
-    aggregate_ras = dataset[dataset_map['aggregate_ras']]
     aggregate_crusher = dataset[dataset_map['aggregate_crusher']]
 
     type_binder = dataset[dataset_map['type_binder']]
     binder = dataset[dataset_map['binder']]
     rap = dataset[dataset_map['rap']]
+    ras = dataset[dataset_map['ras']]
 
     type_mix_additive = dataset[dataset_map['type_mix_additive']]
     mix_additive = dataset[dataset_map['mix_additive']]
@@ -59,14 +59,14 @@ def search_page_two(page, dataset):
             elif (type == 'Portland cement'):
                 aggregate_portland.append(value)
                 find_portland = True
-
-            else:
-                aggregate_ras.append(value)
-                find_ras = True
             
         elif (columns[0].text == 'RAP'):
             find_rap = True
             rap.append(columns[2].text)
+
+        elif (columns[0].text == 'RAS'):
+            find_ras = True
+            ras.append(columns[2].text)
 
         elif (columns[0].text == 'Binder'):
             type_binder_values.append(columns[1].text)
@@ -107,6 +107,9 @@ def search_page_two(page, dataset):
     if (not find_rap):
         rap.append('-')
 
+    if (not find_ras):
+        ras.append('-')
+
     if (not find_aggregate):
         aggregate_lime.append('-')
         aggregate_portland.append('-')
@@ -124,5 +127,3 @@ def search_page_two(page, dataset):
         if (not find_portland):
             aggregate_portland.append('-')
         
-        if (not find_ras):
-            aggregate_ras.append('-')
