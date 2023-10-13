@@ -25,8 +25,6 @@ def write_sheets_map(sheets_map):
   with open(save_path, "w") as arquivo_json:
     json.dump(sheets_map, arquivo_json)
 
-  print(f'Dicionário foi escrito em {save_path}')
-
 def load_sheets_map():
   # Nome do arquivo JSON a ser lido
   current_path = os.path.abspath(os.path.dirname(__file__))
@@ -36,9 +34,6 @@ def load_sheets_map():
     # Ler o arquivo JSON e criar um dicionário
     with open(save_path, "r") as arquivo_json:
         sheets_map = json.load(arquivo_json)
-        print("Dicionário lido do arquivo JSON:")
-        print(sheets_map)
-        print()
         return sheets_map
   except FileNotFoundError:
      print('Não há dicionário salvo')
