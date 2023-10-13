@@ -31,11 +31,14 @@ def search_page_two(page, dataset):
     find_binder = False
     find_rap = False
 
-    crusher_count = 0
-    crusher_value = ''
-    mix_additive_count = 0
-    mix_additive_value = ''
-    type_mix_additive_value = ''
+    crusher_values = []
+    binder_values = []
+    type_binder_values = []
+    mix_additive_values = []
+    type_mix_additive_values = []
+    binder_additive_values = []
+    type_binder_additive_values = []
+
     for row in rows:
         columns = row.find_all('td')
         if (columns[1].text.count('Mineral fillers')):
@@ -50,11 +53,7 @@ def search_page_two(page, dataset):
                 find_lime = True
 
             elif (type == 'Crusher fines'):
-                crusher_count += 1
-                if (crusher_count == 1):
-                    crusher_value += value
-                else:
-                    crusher_value += ', ' + value
+                crusher_values.append(value)
                 find_crusher = True
 
             elif (type == 'Portland cement'):
@@ -70,40 +69,40 @@ def search_page_two(page, dataset):
             rap.append(columns[2].text)
 
         elif (columns[0].text == 'Binder'):
-            type_binder.append(columns[1].text)
-            binder.append(columns[2].text)
+            type_binder_values.append(columns[1].text)
+            binder_values.append(columns[2].text)
             find_binder = True
 
         elif (columns[0].text == "Binder Additive"):
             find_bind_additive = True
-            type_binder_additive.append(columns[1].text)
-            binder_additive.append(columns[2].text[0:1])
+            type_binder_additive_values.append(columns[1].text)
+            binder_additive_values.append(columns[2].text)
             
         elif (columns[0].text == "Mix Additive"):
             find_mix_additive = True
-            mix_additive_count += 1
-
-            if (mix_additive_count == 1):
-                type_mix_additive_value += columns[1].text
-                mix_additive_value += columns[2].text
-            else:
-                type_mix_additive_value += ", " + columns[1].text
-                mix_additive_value += ", " + columns[2].text
+            type_mix_additive_values.append(columns[1].text)
+            mix_additive_values.append(columns[2].text)
     
     if (not find_binder):
         binder.append('-')
         type_binder.append('-')
+    else:
+        binder.append(', '.join(binder_values))
+        type_binder.append(', '.join(binder_values))
 
     if (not find_bind_additive):
         binder_additive.append('-')
         type_binder_additive.append('-')
+    else:
+        binder_additive.append(', '.join(binder_additive_values))
+        type_binder_additive.append(', '.join(type_binder_additive_values))
 
     if (not find_mix_additive):
         mix_additive.append('-')
         type_mix_additive.append('-')
     else:
-        mix_additive.append(mix_additive_value)
-        type_mix_additive.append(type_mix_additive_value)
+        mix_additive.append(', '.join(mix_additive_values))
+        type_mix_additive.append(', '.join(type_mix_additive_values))
 
     if (not find_rap):
         rap.append('-')
@@ -120,7 +119,7 @@ def search_page_two(page, dataset):
         if (not find_crusher):
             aggregate_crusher.append('-')
         else:
-            aggregate_crusher.append(crusher_value)
+            aggregate_crusher.append(', '.join(crusher_values))
 
         if (not find_portland):
             aggregate_portland.append('-')
