@@ -125,5 +125,13 @@ class Scrappy:
     # for i in range(len(self.sheets_sizes)):
     #   print(f'Planilha de {self.valid_urls[i]} - Tamanho {self.sheets_sizes[i]}')
     # print()
+
+    total_data_amount = self.total_links * len(dataset_map) * len(self.run_times)
+    total_success_data_amount = self.total_links * len(dataset_map) * len(self.successes)
+    total_error_data_amount = self.total_links * len(dataset_map) * len(self.errors)
+    print(f'Quantidade total de dados procurados: {total_data_amount}')
+    print(f'Quantidade total de dados escritos: {total_success_data_amount}')
+    print(f'Quantidade total de dados não escritos: {total_error_data_amount}')
+    print(f'Taxa de acerto dos dados: {(total_success_data_amount - total_error_data_amount) / total_data_amount}')
     print('\n================================================================\n')
     
