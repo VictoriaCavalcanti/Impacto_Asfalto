@@ -5,7 +5,16 @@ def state_abbreviation_filter(state_url):
     return state_url[-3: size - 1]
 
 def gradations_filter(string):
-    return string[16 : len(string)]
+    result = string[16 : len(string)]
+    match result:
+        case 'dense':
+            return 'densa'
+        case 'gap':
+            return 'aberta'
+        case 'Not Reported':
+            return 'Não reportada'
+        case _:
+            return result
 
 def performances_filter(text):
     try:
