@@ -15,27 +15,27 @@ H187A12R2C05 ,Jessup Asphalt Plant ,3,3,64-22,35,-,-,-,-,densa,HMA,138-171,-,-,-
 H187A12R2F01 ,Jessup Asphalt Plant ,4,4,76-22,25,-,-,-,-,densa,HMA,143-177,-,-,-,-,"26,22","2,09","23,63","51,94",480,28,363,870,1339,N/A,N/A,1339,227,N/A,0,227,https://asphaltepd.org/epd/d/mYUrPQ/
 H187A12R3C03 ,Jessup Asphalt Plant ,4,4,64-22,24,-,-,-,-,densa,HMA,138-166,-,-,-,-,"21,50","2,05","23,63","47,19",407,27,363,796,1302,N/A,N/A,1302,218,N/A,0,218,https://asphaltepd.org/epd/d/9JUmwj/
 H187A12R4C03 ,Jessup Asphalt Plant ,4,4,64-22,24,-,-,-,-,densa,HMA,138-166,-,-,-,-,"21,50","2,36","23,63","47,50",407,31,363,800,1302,N/A,N/A,1302,218,N/A,0,218,https://asphaltepd.org/epd/d/YqUm5E/
-H187A19C1C03 ,Jessup Asphalt Plant ,3,3,64-22,12,-,-,-,-,densa,HMA,143-177,-,-,-,-,"17,69","2,01","23,63","43,33",331,27,363,720,1041,N/A,N/A,1041,145,N/A,0,145,https://asphaltepd.org/epd/d/KoUJq8/
-H187A19C2C03 ,Jessup Asphalt Plant ,3,3,64-22,11,-,-,-,-,densa,HMA,138-166,-,-,-,-,"19,41","2,32","23,63","45,37",364,31,363,758,1153,N/A,N/A,1153,136,N/A,0,136,https://asphaltepd.org/epd/d/qmU6de/
-H187A19C2C04 ,Jessup Asphalt Plant ,3,3,64-22,20,-,-,-,-,densa,HMA,143-177,-,-,-,-,"15,89","2,22","23,63","41,74",296,29,363,688,930,N/A,N/A,930,218,N/A,0,218,https://asphaltepd.org/epd/d/keUvAZ/
-H187A19C4C03 ,Jessup Asphalt Plant ,2,2,64-22,12,-,-,-,-,densa,HMA,143-160,-,-,-,-,"15,40","2,19","23,63","41,23",287,29,363,678,893,N/A,N/A,893,145,N/A,0,145,https://asphaltepd.org/epd/d/6QU6ak/
+H187A19C1C03 ,Jessup Asphalt Plant ,3,3,64-22,12,-,-,-,-,densa,HMA,143-177,-,-,4,-,"17,69","2,01","23,63","43,33",331,27,363,720,1041,N/A,N/A,1041,145,N/A,0,145,https://asphaltepd.org/epd/d/KoUJq8/
+H187A19C2C03 ,Jessup Asphalt Plant ,3,3,64-22,11,-,-,-,-,densa,HMA,138-166,-,-,4,-,"19,41","2,32","23,63","45,37",364,31,363,758,1153,N/A,N/A,1153,136,N/A,0,136,https://asphaltepd.org/epd/d/qmU6de/
+H187A19C2C04 ,Jessup Asphalt Plant ,3,3,64-22,20,-,-,-,-,densa,HMA,143-177,-,-,4,-,"15,89","2,22","23,63","41,74",296,29,363,688,930,N/A,N/A,930,218,N/A,0,218,https://asphaltepd.org/epd/d/keUvAZ/
+H187A19C4C03 ,Jessup Asphalt Plant ,2,2,64-22,12,-,-,-,-,densa,HMA,143-160,-,-,4,-,"15,40","2,19","23,63","41,23",287,29,363,678,893,N/A,N/A,893,145,N/A,0,145,https://asphaltepd.org/epd/d/6QU6ak/
 H187A25R2C03 ,Jessup Asphalt Plant ,3,3,64-22,20,-,-,-,-,densa,HMA,143-177,-,-,-,-,"18,12","0,50","23,63","42,25",341,7,363,710,1079,N/A,N/A,1079,181,N/A,0,181,https://asphaltepd.org/epd/d/rQUrXq/
 H187A25R4C03 ,Jessup Asphalt Plant ,3,3,64-22,19,-,-,-,-,densa,HMA,143-171,-,-,-,-,"18,13","1,51","23,63","43,27",341,20,363,724,1079,N/A,N/A,1079,172,N/A,0,172,https://asphaltepd.org/epd/d/1AUKrR/
-12.5mm SMA ,Massey HMA Plant ,6,6,76-22,9,-,-,"Fibers, natural - Cellulose*",< 1%,aberta,WMA,146-163,-,-,7,-,"43,54","5,22","20,93","69,69",804,69,106,979,2268,N/A,N/A,2268,85,N/A,0,85,https://asphaltepd.org/epd/d/zwU4j/
+12.5mm SMA ,Massey HMA Plant ,6,6,76-22,9,-,-,"Fibers, natural - Cellulose*",< 1%,aberta,WMA,146-163,-,-,-,-,"43,54","5,22","20,93","69,69",804,69,106,979,2268,N/A,N/A,2268,85,N/A,0,85,https://asphaltepd.org/epd/d/zwU4j/
 12.5mm Wearing ,Massey HMA Plant ,3,3,64-22,34,-,-,-,-,densa,WMA,138-157,-,-,-,-,"19,12","3,78","20,93","43,83",360,50,106,515,1153,N/A,N/A,1153,308,N/A,0,308,https://asphaltepd.org/epd/d/P5UKK/
 19.0mm Base ,Massey HMA Plant ,3,3,64-22,29,-,-,-,-,densa,WMA,138-157,-,-,-,-,"18,02","4,06","20,93","43,01",339,54,106,498,1079,N/A,N/A,1079,264,N/A,0,264,https://asphaltepd.org/epd/d/QVU3X/
 19.0mm Type B ,Massey HMA Plant ,4,4,64-22,21,-,-,-,-,densa,WMA,138-157,-,-,-,-,"23,25","4,45","20,93","48,63",440,59,106,605,1413,N/A,N/A,1413,192,N/A,0,192,https://asphaltepd.org/epd/d/P5Ugvz/
 19.0mm Type B ,Massey HMA Plant ,4,4,76-22,10,-,-,-,-,densa,WMA,143-160,-,-,-,-,"31,19","5,18","20,93","57,30",574,69,106,748,1599,N/A,N/A,1599,87,N/A,0,87,https://asphaltepd.org/epd/d/eBU4Vj/
 25.0mm Base ,Massey HMA Plant ,3,3,64-22,21,-,-,-,-,densa,WMA,141-157,-,-,-,-,"18,10","4,48","20,93","43,52",341,60,106,506,1079,N/A,N/A,1079,194,N/A,0,194,https://asphaltepd.org/epd/d/85UgL/
-9.5mm R & S ,Massey HMA Plant ,3,3,64-22,26,-,-,-,-,densa,WMA,138-157,-,-,-,-,"19,24","4,39","20,93","44,55",361,58,106,525,1153,N/A,N/A,1153,264,N/A,0,264,https://asphaltepd.org/epd/d/3JUk8/
+9.5mm R & S ,Massey HMA Plant ,3,3,64-22,26,-,-,-,-,densa,WMA,138-157,-,-,3,-,"19,24","4,39","20,93","44,55",361,58,106,525,1153,N/A,N/A,1153,264,N/A,0,264,https://asphaltepd.org/epd/d/3JUk8/
 9.5mm Type C ,Massey HMA Plant ,4,4,64-22,27,-,-,-,-,densa,WMA,138-157,-,-,-,-,"26,62","4,53","20,93","52,08",506,60,106,671,1637,N/A,N/A,1637,243,N/A,0,243,https://asphaltepd.org/epd/d/QVUJk1/
 9.5mm Type C ,Massey HMA Plant ,5,5,76-22,10,-,-,-,-,densa,WMA,143-160,-,-,-,-,"36,67","5,44","20,93","63,05",676,72,106,854,1897,N/A,N/A,1897,95,N/A,0,95,https://asphaltepd.org/epd/d/74U5Dy/
 9.5mm Wearing ,Massey HMA Plant ,4,4,64-22,31,-,-,-,-,densa,WMA,138-157,-,-,-,-,"22,00","4,22","20,93","47,15",416,56,106,577,1339,N/A,N/A,1339,280,N/A,0,280,https://asphaltepd.org/epd/d/mYU9D/
 UTBWC ,Massey HMA Plant ,5,5,76-22,-,-,-,"Fibers, natural - Cellulose*",< 1%,other,WMA,143-160,-,-,-,-,"36,75","5,74","20,93","63,42",678,76,106,860,1895,N/A,N/A,1895,0,N/A,0,0,https://asphaltepd.org/epd/d/74UJbR/
-12.5mm SMA ,Wye Mills HMA Plant ,6,6,76-22,11,-,-,"Fibers, natural - Cellulose*",< 1%,aberta,WMA,143-163,-,-,6,-,"43,52","9,38","24,74","77,64",804,124,153,1081,2268,N/A,N/A,2268,102,N/A,0,102,https://asphaltepd.org/epd/d/ZXUwvZ/
+12.5mm SMA ,Wye Mills HMA Plant ,6,6,76-22,11,-,-,"Fibers, natural - Cellulose*",< 1%,aberta,WMA,143-163,-,-,-,-,"43,52","9,38","24,74","77,64",804,124,153,1081,2268,N/A,N/A,2268,102,N/A,0,102,https://asphaltepd.org/epd/d/ZXUwvZ/
 12.5mm Wearing ,Wye Mills HMA Plant ,3,3,64-22,30,-,-,-,-,densa,WMA,138-157,-,-,-,-,"19,16","6,83","24,74","50,73",361,91,153,604,1153,N/A,N/A,1153,273,N/A,0,273,https://asphaltepd.org/epd/d/1AUjxX/
 19.0mm Base ,Wye Mills HMA Plant ,3,3,64-22,30,-,-,-,-,densa,WMA,138-157,-,-,-,-,"18,01","6,83","24,74","49,58",339,91,153,582,1079,N/A,N/A,1079,273,N/A,0,273,https://asphaltepd.org/epd/d/4RUk6L/
-9.5mm R & S ,Wye Mills HMA Plant ,3,3,64-22,24,-,-,-,-,densa,WMA,138-157,-,-,-,-,"19,26","9,10","24,74","53,10",361,121,153,635,1153,N/A,N/A,1153,246,N/A,0,246,https://asphaltepd.org/epd/d/5mUvRm/
+9.5mm R & S ,Wye Mills HMA Plant ,3,3,64-22,24,-,-,-,-,densa,WMA,138-157,-,-,3,-,"19,26","9,10","24,74","53,10",361,121,153,635,1153,N/A,N/A,1153,246,N/A,0,246,https://asphaltepd.org/epd/d/5mUvRm/
 9.5mm Wearing ,Wye Mills HMA Plant ,4,4,64-22,30,-,-,-,-,densa,WMA,138-157,-,-,-,-,"22,01","8,87","24,74","55,62",416,118,153,687,1339,N/A,N/A,1339,271,N/A,0,271,https://asphaltepd.org/epd/d/vZU5y8/
 H186B09R2B57 ,Bladensburg Asphalt Plant ,4,4,58-28,36,-,-,-,-,densa,WMA,107-149,-,-,-,-,"22,40","1,15","14,87","38,43",423,15,256,695,1369,N/A,N/A,1369,329,N/A,0,329,https://asphaltepd.org/epd/d/BZU17/
 H186B12R2B57 ,Bladensburg Asphalt Plant ,3,3,58-28,37,-,-,-,-,densa,WMA,107-149,-,-,-,-,"20,23","1,12","14,87","36,22",381,15,256,653,1227,N/A,N/A,1227,333,N/A,0,333,https://asphaltepd.org/epd/d/25Uxw/

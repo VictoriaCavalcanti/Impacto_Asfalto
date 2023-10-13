@@ -10,8 +10,8 @@ Mix,Usinas,Tipo Binder,Binder,P.G,RAP,Tipo Binder Additive,Binder Additive,Tipo 
 B2013.03(2022) ,Lone Pine ,4,4,64-28,24,-,-,-,-,densa,HMA,149-166,-,-,-,-,"31,73","0,20","25,17","57,09",583,3,288,874,1637,N/A,N/A,1637,217,N/A,0,217,https://asphaltepd.org/epd/d/LDURXk/
 5037-OCMM300TX ,Redmond Asphalt Plant ,6,6,64-28,28,-,-,-,-,densa,HMA,150-155,-,-,-,-,"33,76","3,30","15,57","52,63",640,44,269,953,2046,N/A,N/A,2046,257,N/A,0,257,https://asphaltepd.org/epd/d/P5URkQ/
 5037-OCMM300TX ,Redmond Asphalt Plant ,6,6,64-28,28,-,-,-,-,densa,HMA,150-155,-,-,-,-,"33,76","3,09","15,57","52,43",640,41,269,950,2046,N/A,N/A,2046,257,N/A,0,257,https://asphaltepd.org/epd/d/aRUqbe/
-5307-OCGL142T ,Redmond Asphalt Plant ,6,6,Não reportado,12,-,-,-,-,Não reportada,HMA,154-160,-,-,-,-,"33,97","4,37","15,57","53,91",643,58,269,970,2046,N/A,N/A,2046,137,N/A,0,137,https://asphaltepd.org/epd/d/mYUPro/
-5307-OCGL142T ,Redmond Asphalt Plant ,6,6,Não reportado,12,-,-,-,-,Não reportada,HMA,154-160,-,-,-,-,"33,97","4,57","15,57","54,11",643,61,269,973,2046,N/A,N/A,2046,137,N/A,0,137,https://asphaltepd.org/epd/d/o8UXpB/
+5307-OCGL142T ,Redmond Asphalt Plant ,6,6,Não reportado,12,-,-,-,-,Não reportada,HMA,154-160,-,-,3,-,"33,97","4,37","15,57","53,91",643,58,269,970,2046,N/A,N/A,2046,137,N/A,0,137,https://asphaltepd.org/epd/d/mYUPro/
+5307-OCGL142T ,Redmond Asphalt Plant ,6,6,Não reportado,12,-,-,-,-,Não reportada,HMA,154-160,-,-,3,-,"33,97","4,57","15,57","54,11",643,61,269,973,2046,N/A,N/A,2046,137,N/A,0,137,https://asphaltepd.org/epd/d/o8UXpB/
 OR52D3000 ,Coffee Lake Asphalt Plant ,6,6,64-22,30,-,-,-,-,densa,HMA,151-156,-,-,-,-,"35,28","0,99","13,01","49,27",671,13,230,914,2194,N/A,N/A,2194,338,N/A,0,338,https://asphaltepd.org/epd/d/1AUa2A/
 OR53D3000 ,Coffee Lake Asphalt Plant ,6,6,64-22,30,-,-,-,-,densa,HMA,149-155,-,-,-,-,"34,13","0,98","13,01","48,12",649,13,230,892,2120,N/A,N/A,2120,335,N/A,0,335,https://asphaltepd.org/epd/d/xPU3w7/
 OR54D20000 ,Coffee Lake Asphalt Plant ,6,6,70-22,20,-,-,-,-,densa,HMA,160-166,-,-,-,-,"33,66","4,79","13,01","51,45",640,64,230,934,2083,N/A,N/A,2083,239,N/A,0,239,https://asphaltepd.org/epd/d/o8UKL7/
@@ -41,7 +41,7 @@ MOD C ,112-Foster Rd ,5,5,64-22,25,-,-,-,-,densa,HMA,149-163,-,-,-,-,"31,27","2,
 15164320 ,Coburg ,6,6,Não reportado,20,-,-,-,-,Não reportada,HMA,172-177,-,-,-,-,"42,07","1,21","23,70","66,98",776,16,412,1205,2194,N/A,N/A,2194,181,N/A,0,181,https://asphaltepd.org/epd/d/wRUrka/
 15164359 ,Coburg ,6,6,70-22,20,-,-,-,-,densa,HMA,163-169,-,-,-,-,"42,07","1,25","23,70","67,02",776,17,412,1205,2194,N/A,N/A,2194,181,N/A,0,181,https://asphaltepd.org/epd/d/QVU7XR/
 15804320 ,Coburg ,6,6,64-22,20,-,-,-,-,densa,WMA,143-152,-,-,-,-,"37,54","1,29","23,70","62,53",718,17,412,1147,2343,N/A,N/A,2343,181,N/A,0,181,https://asphaltepd.org/epd/d/3JUOaL/
-16134501 ,Coburg ,6,6,Não reportado,30,-,-,-,-,Não reportada,HMA,144-149,-,-,-,-,"35,18","1,20","23,70","60,09",670,16,412,1099,2194,N/A,N/A,2194,290,N/A,0,290,https://asphaltepd.org/epd/d/drUj3V/
+16134501 ,Coburg ,6,6,Não reportado,30,-,-,-,-,Não reportada,HMA,144-149,-,-,2,-,"35,18","1,20","23,70","60,09",670,16,412,1099,2194,N/A,N/A,2194,290,N/A,0,290,https://asphaltepd.org/epd/d/25U99O/
 16134520 ,Coburg ,6,6,Não reportado,30,-,-,-,-,Não reportada,HMA,150-156,-,-,-,-,"34,58","1,23","23,70","59,51",660,16,412,1089,2157,N/A,N/A,2157,272,N/A,0,272,https://asphaltepd.org/epd/d/drU6kA/
 16134600 ,Coburg ,6,6,Não reportado,35,-,-,-,-,Não reportada,HMA,144-149,-,-,-,-,"35,10","1,20","23,70","60,01",670,16,412,1098,2194,N/A,N/A,2194,318,N/A,0,318,https://asphaltepd.org/epd/d/6QUb6b/
 16154520 ,Coburg ,6,6,64-22,30,-,-,-,-,densa,WMA,146-152,-,-,-,-,"34,01","1,21","23,70","58,92",649,16,412,1077,2120,N/A,N/A,2120,272,N/A,0,272,https://asphaltepd.org/epd/d/3JUO6Z/
