@@ -33,6 +33,7 @@ def search_page_two(page, dataset):
 
     crusher_values = []
     binder_values = []
+    ras_values = []
     type_binder_values = []
     mix_additive_values = []
     type_mix_additive_values = []
@@ -66,7 +67,7 @@ def search_page_two(page, dataset):
 
         elif (columns[0].text == 'RAS'):
             find_ras = True
-            ras.append(columns[2].text)
+            ras_values.append(columns[2].text)
 
         elif (columns[0].text == 'Binder'):
             type_binder_values.append(columns[1].text)
@@ -109,6 +110,8 @@ def search_page_two(page, dataset):
 
     if (not find_ras):
         ras.append('-')
+    else:
+        ras.append(', '.join(ras_values))
 
     if (not find_aggregate):
         aggregate_lime.append('-')
