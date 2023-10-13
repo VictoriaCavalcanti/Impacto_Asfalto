@@ -18,7 +18,7 @@ def create_data_set():
 
     aggregate_lime = ['Teor de cal']
     aggregate_portland = ['Cimento Portland']
-    aggregate_ras = ['Recycled Asphalt Shingles']
+    ras = ['Recycled Asphalt Shingles']
     aggregate_crusher = ['Crusher fines']
 
     CO2material = ['CO2 - Material']
@@ -63,7 +63,7 @@ def create_data_set():
 
         aggregate_lime,
         aggregate_portland,
-        aggregate_ras,
+        ras,
         aggregate_crusher,
 
         CO2material,
