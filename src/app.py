@@ -109,7 +109,7 @@ class Scrappy:
   def summary(self):
     print('\n========================== Resumo do Programa =============================\n')
     print(f'Data de execução: {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-    print(f'Tempo de execução do programa: {self.end_time - self.start_time}\n')
+    print(f'Tempo de execução do programa: {round(self.end_time - self.start_time, 2)} s\n')
 
     print(f'Quantidade total de tentativas: {self.run_times}')
     print(f'Tentativas sucedidas: {self.successes}')
@@ -134,12 +134,12 @@ class Scrappy:
     #   print(f'Planilha de {self.valid_urls[i]} - Tamanho {self.sheets_sizes[i]}')
     print()
 
-    total_data_amount = self.total_links * len(dataset_map) * len(self.run_times)
-    total_success_data_amount = self.total_links * len(dataset_map) * len(self.successes)
-    total_error_data_amount = self.total_links * len(dataset_map) * len(self.errors)
+    total_data_amount = self.total_links * len(dataset_map)
+    total_success_data_amount = self.lines_sucess * len(dataset_map)
+    total_error_data_amount = (self.total_lines - self.lines_sucess) * len(dataset_map)
     print(f'Quantidade total de dados procurados: {total_data_amount}')
     print(f'Quantidade total de dados escritos: {total_success_data_amount}')
     print(f'Quantidade total de dados não escritos: {total_error_data_amount}')
-    print(f'Taxa de acerto dos dados: {(total_success_data_amount - total_error_data_amount) / total_data_amount}')
-    print('\n================================================================\n')
+    print(f'Taxa de acerto dos dados: {round((total_success_data_amount - total_error_data_amount) / total_data_amount, 2) * 100} %')
+    print('\n===================================================================================\n')
     
