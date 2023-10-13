@@ -121,8 +121,9 @@ class Scrappy:
     print(f'Quantidade de planilhas escritas: {self.sheets_writed_count}')
     print(f'Quantidade de planilhas escritas corretamente: {self.sheets_writed_success}')
     print(f'Taxa de acerto das planilhas: {round((self.sheets_writed_success / self.sheets_writed_count) * 100, 2)} %')
-    print(f'Tamanho das planilhas: ')
-    for i in range(len(self.sheets_sizes)):
-      print(f'Planilha de {self.valid_urls[i]} - Tamanho {self.sheets_sizes[i]}')
-    print()
+    # print(f'Tamanho das planilhas: ')
+    # for i in range(len(self.sheets_sizes)):
+    #   print(f'Planilha de {self.valid_urls[i]} - Tamanho {self.sheets_sizes[i]}')
+    # print()
+    print('\n================================================================\n')
     
