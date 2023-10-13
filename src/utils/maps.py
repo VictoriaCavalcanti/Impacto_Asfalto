@@ -18,7 +18,7 @@ dataset_map = {
 
   'aggregate_lime' : 13,
   'aggregate_portland' : 14,
-  'aggregate_ras' : 15,
+  'ras' : 15,
   'aggregate_crusher' : 16,
 
   'CO2material': 17, 
