@@ -43,12 +43,12 @@ class Scrappy:
   def run_all_links(self):
     sheets_map = load_sheets_map()
     states_urls = get_all_states_urls()
-    self.run_times = (len(states_urls))
     for state_url in states_urls:
       sheets_condition = state_url in sheets_map and sheets_map[state_url] and sheets_exists(get_sheets_file_name(state_url))
       if (not self.force_write_sheets and sheets_condition):
         continue
-
+      
+      self.run_times += 1
       try:
         dataset = create_data_set()
         state_page = get_html(state_url)
