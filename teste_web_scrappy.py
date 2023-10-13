@@ -65,10 +65,13 @@ def tipoMIX_filter (string):
     return string [65:68]
 
 urls = ['URLS']
+MIX = ['Mix']
+plant = ['Usinas']
 
 # Linhas para armazenar os dados pag 1 
 gradations = ['Graduação']
 performances = ['P.G']
+rap = ['RAP']
 temperatures = ['Temperaturas']
 tipoMIX = ['Tipo de Mistura'] 
 
@@ -77,7 +80,6 @@ aggregate_portland = ['Cimento Portland']
 aggregate_lime = ['Lime']
 aggregate_crusher = ['Crusher']
 
-rap = ['RAP']
 tipobinder =['Tipo de binder']
 binder = ['Binder']
 tipobinderadditive=['Binder additive- Tipo'] 
@@ -108,7 +110,8 @@ SM_total = ['SM - Total']
 
 # Data set
 data_set = [
-    urls,
+    MIX,
+    plant,
     tipobinder, 
     binder,#teor 
     performances,
