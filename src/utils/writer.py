@@ -48,3 +48,11 @@ def sheets_exists(sheets_filename):
 def get_sheets_file_name(state_url):
    abbreviation = state_abbreviation_filter(state_url)
    return 'dados_' + abbreviation + '.csv'
+
+def count_sheets_lines(file_path):
+  counter = -1
+  # Abre o arquivo para leitura
+  with open(file_path, "r") as file:
+      for line in file:
+        counter += 1
+  return counter

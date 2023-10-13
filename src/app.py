@@ -24,21 +24,26 @@ class Scrappy:
   start_time = time()
   end_time = 0
 
-  sheets_sizes = []
-  urls = []
-  invalid_dataset_urls = []
-  invalid_urls = []
-  valid_urls = []
+  invalid_dataset_urls = [] # Urls com datasets inválidos
+  valid_dataset_urls = [] # Urls com datasets válidos
+  sheets_sizes = [] # Tamanhos das tabelas escritas
+  sheets_writed_success = 0 # Quantidade de tabelas corretamente escritas
+  sheets_writed_count = 0 # Quantidade de tabelas escritas
 
-  sheets_writed_success = 0
-  sheets_writed_count = 0
-  links_sucess = 0
-  lines_sucess = 0
-  total_links = 0
-  total_lines = 0
+  urls = [] # Lista de todas urls
+  invalid_urls = [] # Lista com urls inválidas -> Nem chega a montar o dataset
+  valid_urls = [] # Lista com urls válidas
+  links_sucesses_writed = 0 # Quantidade de links escritos corretamente
+  links_errors_writed = 0 # Quantidade de links não escritos ou incorretos
+  total_links = 0 # Quantidade total de links percorridos
+
+  lines_writed = 0 # Linhas escritas (total)
+  lines_sucess = 0 # Linhas escritas corretamente
+  lines_erros = 0 # Linhas escritas incorretamente
+
   run_times = 0
-  successes = 0
-  errors = 0
+  successes = 0 # Sucesso -> Apenas conseguiu rodar
+  errors = 0 # Error -> Não conseguiu rodar
 
   def __init__(self, urls = [], test = False, force_write_sheets = False) -> None:
     self.urls = urls
@@ -60,8 +65,9 @@ class Scrappy:
         search_state_page(state_page, dataset)
         abbreviation = state_abbreviation_filter(state_url)
         urls = dataset[dataset_map['urls']]
+        self.urls = urls[1:]
 
-        for url in urls[1:]:
+        for url in self.urls:
           edp_html = get_html(url)
           edp_pages = edp_html.find_all('div', class_='page')
           serch_all_pages(edp_pages, dataset)
@@ -69,7 +75,9 @@ class Scrappy:
         result = dataset_validator(dataset)
         if (not result[0]):
           print_dataset_error(abbreviation, state_url, result)
+          self.lines_errors += result[3] # Linhas que deixaram de serem escritas
           self.invalid_dataset_urls.append(state_url)
+          self.links_errors_writed += len(urls) - 1
           self.errors += 1
           continue
 
@@ -79,16 +87,23 @@ class Scrappy:
         sheets_map.update({state_url : status})
         write_sheets_map(sheets_map)
 
-        if (status): self.sheets_writed_success += 1
+        if (status):
+          self.sheets_writed_success += 1
+          self.valid_dataset_urls.append(state_url)
+          self.lines_sucess += result[0]
+          self.links_sucesses_writed += result[0] - 1
+        else:
+          self.links_errors_writed += result[0] - 1
+
         print_sheet_status(expected, result)
 
-        self.successes += 1
-        self.sheets_sizes.append(result[0])
+        self.lines_writed += result[0]
         self.sheets_writed_count += 1
-        self.lines_sucess += result[0]
-        self.total_lines += expected
-        self.total_links += expected - 1
+        self.sheets_sizes.append(result[0])
         self.valid_urls.append(state_url)
+
+        self.total_links += len(urls) - 1
+        self.successes += 1
 
       except ValueError as error:
         print(f'Erro ao executar scrappy em {state_url}')
@@ -102,6 +117,7 @@ class Scrappy:
       pass
     else:
       self.run_all_links()
+
     self.end_time = time()
     self.summary()
     print('Fim do programa')
@@ -135,11 +151,14 @@ class Scrappy:
     print()
 
     total_data_amount = self.total_links * len(dataset_map)
+    total_data_writed = self.lines_writed * len(dataset_map)
     total_success_data_amount = self.lines_sucess * len(dataset_map)
-    total_error_data_amount = (self.total_lines - self.lines_sucess) * len(dataset_map)
+    total_error_data_amount = self.lines_erros * len(dataset_map)
     print(f'Quantidade total de dados procurados: {total_data_amount}')
-    print(f'Quantidade total de dados escritos: {total_success_data_amount}')
-    print(f'Quantidade total de dados não escritos: {total_error_data_amount}')
-    print(f'Taxa de acerto dos dados: {round((total_success_data_amount - total_error_data_amount) / total_data_amount, 2) * 100} %')
+    print(f'Quantidade total de dados escritos: {total_data_writed}')
+    print(f'Quantidade total de dados não escritos: {total_data_amount - total_data_writed}')
+    print(f'Quantidade total de dados escritos corretamente: {total_success_data_amount}')
+    print(f'Quantidade total de dados escritos incorretamente: {total_error_data_amount}')
+    print(f'Taxa de acerto dos dados: {round((total_success_data_amount - total_error_data_amount) / total_data_writed, 2) * 100} %')
     print('\n===================================================================================\n')
     
