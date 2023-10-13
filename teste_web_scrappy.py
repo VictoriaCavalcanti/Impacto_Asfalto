@@ -1,10 +1,7 @@
-# parãmetros fixos de todas as misturas: PG, temperatura, graduação, tipo de mistura, binder, teor de Co2 do material, transporte e usinagem, energia renovavel fue, material
-#e materiais secundários
 #preciso de uma lista para tirar o nome das empresas e o nome da mistura
 # diferenciar os tipos de material filer: caso encontre, anote o nome e o teor
 # diferenciar os tipos de binder additive e mix additive: caso encontre, escrever o nome e o teor 
 #printar a lista de links 
-#relacionar as posições de cada elemento nas listas criadas em novas listas de forma a conter todas as informações sobre cada mistura e anexar em linhas no excel 
 
 import requests
 from bs4 import BeautifulSoup
@@ -67,10 +64,6 @@ def parentheses_filter(text):
 def tipoMIX_filter (string):
     return string [65:68]
 
-def funçãoNA (string):
-    print ("N/A")
-
-
 urls = ['URLS']
 
 # Linhas para armazenar os dados pag 1 
@@ -78,7 +71,6 @@ gradations = ['Graduação']
 performances = ['P.G']
 temperatures = ['Temperaturas']
 tipoMIX = ['Tipo de Mistura'] 
-       #tipobinder = ['Tipo de Binder']
 
 ## Agregado e tipos:
 aggregate_portland = ['Cimento Portland']
@@ -86,10 +78,12 @@ aggregate_lime = ['Lime']
 aggregate_crusher = ['Crusher']
 
 rap = ['RAP']
-tipobinder =[]
+tipobinder =['Tipo de binder']
 binder = ['Binder']
-binderadditive = []
-mixadditive = []
+tipobinderadditive=['Binder additive- Tipo'] 
+binderadditive = ['Binder additive - teor ']
+tipomixadditive = ['Mix additive - tipo']
+mixadditive =['Mix additive - teor'] 
 
 #GWP_100
 co2material = ['CO2 - Material']
@@ -115,11 +109,14 @@ SM_total = ['SM - Total']
 # Data set
 data_set = [
     urls,
+    tipobinder, 
     binder,#teor 
     performances,
     rap,
-    # binderadditive,
-    # mixadditive,
+    tipobinderadditive,
+    binderadditive,
+    tipomixadditive,
+    mixadditive,
 
     gradations,
     tipoMIX, 
@@ -148,7 +145,7 @@ data_set = [
     SM_mat,
     SM_tra,
     SM_pro,
-    SM_total,
+    SM_total, 
 ]
 
 # Loop pelas URLs
@@ -192,8 +189,7 @@ def procura_pagina_1(pagina):
             temperatures.append(temperatures_filter(element.text))
             
         if (element.has_attr('id') and  element['id'] == 'tm_1'):
-            tipoMIX.append(parentheses_filter(element.text))
-            
+            tipoMIX.append(parentheses_filter(element.text))   
         
 
 def procura_pagina_2(pagina):
@@ -202,11 +198,16 @@ def procura_pagina_2(pagina):
     tabela = div_table.find('table')
     linhas = tabela.find_all('tr')
     achou_binder = False
+    achou_tipobinder = False 
     achou_rap = False
     achou_aggregate = False
     achou_lime = False
     achou_portland = False
     achou_crusher = False
+    achou_tipobinderadditive = False 
+    achou_tipomixadditive = False 
+    achou_binderadditive = False 
+    achou_mixadditive = False 
 
     for linha in linhas:
         colunas = linha.find_all('td')
@@ -233,16 +234,45 @@ def procura_pagina_2(pagina):
         elif (colunas[0].text == 'RAP'):
             achou_rap = True
             rap.append(colunas[2].text)
+            
         elif (colunas[0].text == 'Binder'):
-            binder.append(colunas[2].text)
+            achou_tipobinder = True
             achou_binder = True
+            tipobinder.append(colunas[1].text)
+            binder.append(colunas[2].text)
+
+        elif (colunas [0].text == "Binder Additive"):
+            achou_tipobinderadditive = True
+            tipobinderadditive.append(colunas[1].text)
+            achou_binderadditive= True 
+            binderadditive.append(colunas[2].text[0,1])
+            
+        elif (colunas [0].text == "Mix Additive"):
+            achou_tipomixadditive = True
+            achou_mixadditive = True
+            tipomixadditive.append (colunas[1].text)
+            mixadditive.append(colunas[2].text[-1])
+            
     
     if (not achou_binder):
-        binder.append('-')
+        binder.append('-') #acho que dá pra excluir toda a função, todos tem algum binder 
+    if (not achou_tipobinder):
+        tipobinder.append('-')
 
     if (not achou_rap):
         rap.append('-')
 
+    if (not achou_tipobinderadditive):
+        tipobinderadditive.append ('-')
+    if (not achou_binderadditive):
+        binderadditive.append('-')
+        
+    if (not achou_tipomixadditive):
+        tipomixadditive.append('-')
+    if (not achou_mixadditive):
+        mixadditive.append ('-')
+        
+        
     if (not achou_aggregate):
         aggregate_lime.append('-')
         aggregate_crusher.append('-')
@@ -426,9 +456,34 @@ def imprime_listas(num):
     print(rap)
     print()
 
+    print(f'=========================================== BINDER - tipo - {len(tipobinder) - 1} itens ===============================================')
+    print()
+    print(tipobinder)
+    print()
+    
     print(f'=========================================== BINDER (Weight %) - {len(binder) - 1} itens ===============================================')
     print()
     print(binder)
+    print()
+
+    print(f'=========================================== BINDER ADDITIVE - tipo -{len(tipobinderadditive) - 1} itens =======================================================')
+    print()
+    print(tipobinderadditive)
+    print()
+
+    print(f'=========================================== BINDER ADDITIVE - teor -{len(binderadditive) - 1} itens =======================================================')
+    print()
+    print(binderadditive)
+    print()
+
+    print(f'=========================================== MIX ADDITIVE - tipo -{len(tipomixadditive) - 1} itens =======================================================')
+    print()
+    print(tipomixadditive)
+    print()
+
+    print(f'=========================================== MIX ADDITIVE - teor -{len(mixadditive) - 1} itens =======================================================')
+    print()
+    print(mixadditive)
     print()
 
     print(f'=========================================== CO2 - Material - {len(co2material) - 1} itens ===============================================')
@@ -560,6 +615,7 @@ def main():
 
     if (write_result == 's'):
         escreve_dados()
+    
 
 # Salvar em um arquivo Excel
 #df.to_excel('noticias.xlsx', index=False)
@@ -570,3 +626,5 @@ main()
 #fazer uma lista anotando o nome do binder
 # nome e teor de binder additive e mix additive, caso encontrre
 #traduzir todos os "dense, open e not reported" para portugues 
+
+
