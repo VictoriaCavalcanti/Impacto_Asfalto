@@ -141,7 +141,7 @@ class Scrappy:
         print(invalid)
     print()
 
-    print(f'Quantidade total de linhas escritas: {self.total_lines}')
+    print(f'Quantidade total de linhas escritas: {self.lines_writed}')
     print(f'Quantidade de planilhas escritas: {self.sheets_writed_count}')
     print(f'Quantidade de planilhas escritas corretamente: {self.sheets_writed_success}')
     print(f'Taxa de acerto das planilhas: {round((self.sheets_writed_success / self.sheets_writed_count) * 100, 2)} %')
