@@ -89,7 +89,7 @@ def search_page_two(page, dataset):
         type_binder.append('-')
     else:
         binder.append(', '.join(binder_values))
-        type_binder.append(', '.join(binder_values))
+        type_binder.append(', '.join(type_binder_values))
 
     if (not find_bind_additive):
         binder_additive.append('-')
