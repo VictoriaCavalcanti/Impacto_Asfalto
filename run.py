@@ -2,8 +2,8 @@ import sys
 import os
 
 # Obtenha o caminho absoluto do diretório em que este script está localizado.
-diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-src_path = os.path.join(diretorio_atual, "src")
+current_path = os.path.abspath(os.path.dirname(__file__))
+src_path = os.path.join(current_path, "src")
 
 # Adicione o diretório atual ao sys.path se ainda não estiver lá.
 if src_path not in sys.path:
