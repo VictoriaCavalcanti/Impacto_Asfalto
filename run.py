@@ -1,5 +1,12 @@
 import sys
-sys.path.insert(1, 'C:\\Users\\zlFas\\Documents\\Impacto_Asfalto\\src')
+import os
+
+# Obtenha o caminho absoluto do diretório em que este script está localizado.
+diretorio_atual = os.path.abspath(os.path.dirname(__file__))
+
+# Adicione o diretório atual ao sys.path se ainda não estiver lá.
+if diretorio_atual not in sys.path:
+    sys.path.append(diretorio_atual)
 
 from src.app import Scrappy
 
