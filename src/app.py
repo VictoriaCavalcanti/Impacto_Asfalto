@@ -97,7 +97,7 @@ class Scrappy:
 
         print_sheet_status(expected, result)
 
-        self.lines_writed += result[0]
+        self.lines_writed += result[0] - 1
         self.sheets_writed_count += 1
         self.sheets_sizes.append(result[0])
         self.valid_urls.append(state_url)
