@@ -99,7 +99,7 @@ After running the scrappy, to deactivate the virtual env you just need to run th
 deactivate
 ```
 
-## Apllication architecture
+## Aplication architecture
 
 ## How to adapt the application
 
