@@ -9,9 +9,9 @@ The current documentation are in working process and assumes that you are a begi
 
 ## Summary
 - [How to use/run the apllication](#how-to-use/run-the-aplication)
-- [Application architecture]()
-- [How to adapt the apllication]()
-- [Next steps]()
+- [Application architecture](#application-architecture)
+- [How to adapt the apllication](#how-to-adapt-the-application)
+- [Next steps](#next-steps)
 
 ## How to use/run the aplication
 
