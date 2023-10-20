@@ -1,6 +1,6 @@
-# Web Scraper - Asphalt Impact Research
+# Web Scraping - Asphalt Impact Research
 
-To help a **Scientific Iniciation in Asphalt Impact**, we development a **Web Scraper** to collect reserch data from **EDP's (Enviroment Production Declarations)**. The source of EDP's is [Emerald Eco-Label EPD Tool](https://asphaltepd.org), the current application get specific information from all EDP's from all 39 states of United States of America, in total we got data from 1717 EDP's that are writed in tables (matrices) on csv file format, every state have his on csv file.
+To help a **Scientific Iniciation in Asphalt Impact**, we development a **Web Scraping Software** to collect reserch data from **EDP's (Enviroment Production Declarations)**. The source of EDP's is [Emerald Eco-Label EPD Tool](https://asphaltepd.org), the current application get specific information from all EDP's from all 39 states of United States of America, in total we got data from 1717 EDP's that are writed in tables (matrices) on csv file format, every state have his on csv file.
 
 The current documentation are in working process and assumes that you are a beginner in programming and not familiar with python projects, so maybe the docs can be to heavily 'step by step' for you.
 
